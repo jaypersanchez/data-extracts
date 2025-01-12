@@ -1,0 +1,15 @@
+@startuml
+start
+:Start main function;
+:Fetch cryptocurrencies of interest;
+:For each cryptocurrency, fetch market data via API;
+:Process and clean data;
+:Check if data already exists in the database;
+if (Data exists?) then (No)
+    :Insert data into PostgreSQL;
+else (Yes)
+    :Skip insertion;
+endif
+:Complete all cryptocurrencies;
+stop
+@enduml

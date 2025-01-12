@@ -1,0 +1,18 @@
+@startuml
+actor User as U
+participant "Main Function" as MF
+participant "CoinGecko API" as API
+participant "PostgreSQL" as DB
+
+U -> MF: Start script
+MF -> API: Fetch market data (OHLC)
+API --> MF: Return data (JSON)
+MF -> MF: Process and clean data
+MF -> DB: Check if data exists
+alt Data exists
+    MF -> DB: Skip insertion
+else
+    MF -> DB: Insert data
+end
+U <-- MF: Complete process
+@enduml
